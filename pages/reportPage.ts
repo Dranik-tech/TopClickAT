@@ -30,13 +30,10 @@ export class ReportPage {
         return drainageСhannelsLocatorCount > 0 ? true : false;
     }
 
-    async checkTotalPrice(drainageСhannels:string){
-        const drainageСhannelsLocator = this.page.locator(`//td[@class="col-2" and text()="${drainageСhannels}"]`);
-        
-        const drainageСhannelsLocatorCount = await drainageСhannelsLocator.count();
+    async checkTotalPrice(totalPrice:string) {
+        const totalPriceLocator = this.page.locator(`//td[@class="col-2 fw-bold" and text()="${totalPrice}"]`);
+        const totalPriceLocatorCount = await totalPriceLocator.count();
 
-        return drainageСhannelsLocatorCount > 0 ? true : false;
+        return totalPriceLocatorCount > 0 ? true : false;
     }
-
-    
 }
