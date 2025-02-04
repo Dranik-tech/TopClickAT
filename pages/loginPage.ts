@@ -2,10 +2,10 @@ import { Locator, Page } from '@playwright/test';
 import * as allure from "allure-js-commons";
 
 export class LoginPage {
-    private page:Page;
-    private passwordField:Locator;
-    private userField:Locator;
-    private loginButton:Locator;
+     page:Page;
+     passwordField:Locator;
+     userField:Locator;
+     loginButton:Locator;
 
     constructor(page:Page){
         this.page = page;

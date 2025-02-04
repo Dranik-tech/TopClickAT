@@ -15,6 +15,12 @@ export class OrderPreparing {
     drainageСhannelsToggle:Locator;
     calculationButton:Locator;
     openReportButton:Locator;
+    changeTabletopSize:Locator;
+    tabletopParametersOnCalculationTab: Locator;
+    addSecondTableTopButton:Locator;
+    removeSecondTabletopButton:Locator;
+    commercialOfferButton:Locator;
+    commercialOfferPopupHeader:Locator;
 
     constructor(page:Page){
         this.page = page;
@@ -30,6 +36,12 @@ export class OrderPreparing {
         this.drainageСhannelsToggle = this.page.locator('//h4[text()="Проточки для стока воды"]');
         this.calculationButton = this.page.getByTestId('calc-button');
         this.openReportButton = this.page.getByTestId("open-report-button");
+        this.changeTabletopSize = this.page.locator('//div[@data-testid="size-control"]//input').first();
+        this.tabletopParametersOnCalculationTab = this.page.locator('//div[@data-testid="order-list"]//ul//li').first();
+        this.addSecondTableTopButton = this.page.getByTestId('button-plus-blue');
+        this.removeSecondTabletopButton = this.page.getByTestId('button-plus-red');
+        this.commercialOfferButton = this.page.getByTestId('create-order-button');
+        this.commercialOfferPopupHeader = this.page.locator('//h1[text()="Создать КП"]');
     }
 
     async exitFromPage(){
@@ -111,6 +123,32 @@ export class OrderPreparing {
             await selectedColor.waitFor();
             await selectedColor.click();
         })
+    }
+
+    async focusOnTableTopLengthField(){
+        await this.changeTabletopSize.waitFor();
+        await this.changeTabletopSize.click();
+    }
+
+    async enterTabletopLength(length:string){
+        await this.focusOnTableTopLengthField();
+        await this.changeTabletopSize.fill(length);
+        await this.changeTabletopSize.press('Enter');
+    }
+
+    async clickSecondTabletopButton() {
+        await this.addSecondTableTopButton.waitFor();
+        await this.addSecondTableTopButton.click();
+    }
+
+    async removeSecondTabletop() {
+        await this.removeSecondTabletopButton.waitFor();
+        await this.removeSecondTabletopButton.click();
+    }
+
+    async clickOnCommercialOfferButton() {
+        await this.commercialOfferButton.waitFor();
+        await this.commercialOfferButton.click();
     }
 }
 

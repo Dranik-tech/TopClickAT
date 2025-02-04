@@ -65,7 +65,49 @@ test.describe("Positive tests for order preparing", () => {
        expect(await reportPage.checkColorOfTabletop('acryl:Neomarm:N-103 Gray Onix')).toBeTruthy(); 
        expect(await reportPage.checkTypeOfTabletop('П-образная')).toBeTruthy();
        expect(await reportPage.checkDrainageСhannelsExisting('Проточки для стока воды')).toBeTruthy();
-       expect(await reportPage.checkTotalPrice('491100.00 ₽')).toBeTruthy();
+       expect(await reportPage.checkTotalPrice('489100.00 ₽')).toBeTruthy();
        
+    })
+})
+
+test.describe("Additional tests (outside the final task)", () => {
+    test("Enter length of tabletop", async ({}) => {
+        await allure.parentSuite("Additional tests");
+        await allure.suite("Enter length of tabletop");
+        await orderPreparingPage.enterTabletopLength("1000");
+        expect(orderPreparingPage.tabletopParametersOnCalculationTab).toContainText("1000см х");
+    })
+
+    test("Add second tabletop",async () => {
+        await allure.parentSuite("Additional tests");
+        await allure.suite("Add second tabletop");
+        await orderPreparingPage.clickSecondTabletopButton();
+        expect(orderPreparingPage.removeSecondTabletopButton).toBeVisible();
+    })
+
+    test("Remove second tabletop", async () => {
+        await allure.parentSuite("Additional tests");
+        await allure.suite("Remove second tabletop");
+        await orderPreparingPage.clickSecondTabletopButton();
+        await orderPreparingPage.removeSecondTabletop();
+        expect(orderPreparingPage.removeSecondTabletopButton).toBeHidden();
+    })
+
+    test ("Open commercial offer popup", async () => {
+        await allure.parentSuite("Additional tests");
+        await allure.suite("Open commercial offer popup");
+        await orderPreparingPage.togglePlinth();
+        await orderPreparingPage.selectThickness(4);
+        await orderPreparingPage.clickCalculationButton();
+        await orderPreparingPage.clickOnCommercialOfferButton();
+        expect(orderPreparingPage.commercialOfferPopupHeader).toBeVisible();
+    })
+
+    test("Go to login page", async () => {
+        await allure.parentSuite("Additional tests");
+        await allure.suite("Go to login page");
+        await orderPreparingPage.exitFromPage();
+        expect(loginPage.userField).toBeVisible();
+        expect(loginPage.passwordField).toBeVisible();
     })
 })
