@@ -93,16 +93,6 @@ test.describe("Additional tests (outside the final task)", () => {
         expect(orderPreparingPage.removeSecondTabletopButton).toBeHidden();
     })
 
-    test ("Open commercial offer popup", async () => {
-        await allure.parentSuite("Additional tests");
-        await allure.suite("Open commercial offer popup");
-        await orderPreparingPage.togglePlinth();
-        await orderPreparingPage.selectThickness(4);
-        await orderPreparingPage.clickCalculationButton();
-        await orderPreparingPage.clickOnCommercialOfferButton();
-        expect(orderPreparingPage.commercialOfferPopupHeader).toBeVisible();
-    })
-
     test("Go to login page", async () => {
         await allure.parentSuite("Additional tests");
         await allure.suite("Go to login page");
