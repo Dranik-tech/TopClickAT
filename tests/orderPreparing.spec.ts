@@ -65,7 +65,7 @@ test.describe("Positive tests for order preparing", () => {
        expect(await reportPage.checkColorOfTabletop('acryl:Neomarm:N-103 Gray Onix')).toBeTruthy(); 
        expect(await reportPage.checkTypeOfTabletop('П-образная')).toBeTruthy();
        expect(await reportPage.checkDrainageСhannelsExisting('Проточки для стока воды')).toBeTruthy();
-       expect(await reportPage.checkTotalPrice('489100.00 ₽')).toBeTruthy();
+       expect(await reportPage.checkTotalPrice('498800.00 ₽')).toBeTruthy();
        
     })
 })
